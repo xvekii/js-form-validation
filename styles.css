@@ -1,0 +1,29 @@
+body {
+  display: grid;
+  place-items: center;
+  min-height: 80vh;
+}
+
+form {
+  width: 30%;
+}
+
+legend {
+  background-color: black;
+  color: white;
+  padding: 3px 6px;
+}
+
+label {
+  display: block;
+}
+
+#postal-code {
+  width: 7.1rem;
+}
+
+#passwd, 
+#passwd-confirm,
+#email {
+  width: 96%;
+}
