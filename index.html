@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User information</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <form novalidate>
@@ -14,31 +15,36 @@
         <!-- Email -->
         <label class="block" for="email">Email: </label>
         <input type="email" name="email" id="email" autocomplete="on">
-      </p>
-      <p>
-        <!-- Postal Code -->
-        <label for="postal-code">Postal Code: </label>
-        <input type="text" name="postal-code" id="postal-code" autocomplete="on">
+        <span></span>
       </p>
       <p>
         <!-- Select Country -->
-        <label class="country" for="country">Country: </label>
+        <label class="country" for="country">Select Country: </label>
         <select name="country" id="country" autocomplete="on">
-          <option value="hr">Croatia</option>
+          <option value="ch">Switzerland</option>
+          <option value="fr">France</option>
           <option value="de">Germany</option>
-          <option value="nl">The Netherlands</option>
         </select>
+      </p>
+      <!-- Postal Code -->
+      <p>
+        <label for="postal-code">Postal Code: </label>
+        <input type="text" name="postal-code" id="postal-code" autocomplete="on">
+        <span></span>
       </p>
       <!-- Password -->
       <p>
         <label class="block" for="passwd">Password (8 characters minimum): </label>
         <input type="password" name="passwd" id="passwd">
+        <span></span>
       </p>
       <!-- Password Confirmation -->
       <p>
         <label class="block" for="passwd-confirm">Confirm Password: </label>
         <input type="password" name="passwd-confirm" id="passwd-confirm">
+        <span></span>
       </p>
+      <p class="submit-btn-p"><button>Submit</button></p>
     </fieldset>
   </form>
 </body>
