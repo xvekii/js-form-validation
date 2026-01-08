@@ -2,6 +2,9 @@ const email = document.getElementById("email");
 const form = document.querySelector("form");
 const countrySelect = document.getElementById("country");
 const postalCodeField = document.getElementById("postal-code");
+const passwd = document.getElementById("passwd");
+const passwdConfirm = document.getElementById("passwd-confirm");
+const fieldset = document.querySelector("fieldset");
 
 // Email
 email.addEventListener("input", () => {
@@ -22,13 +25,6 @@ email.addEventListener("blur", (e) => {
   }
 });
 
-
-function removeInvalidErrorOutline(el) {
-  if (!el.classList.contains("input")) {
-    el.classList.add("input");
-  }
-}
-
 // Country and Postal Code
 countrySelect.addEventListener("change", checkPostalCode);
 
@@ -43,6 +39,12 @@ postalCodeField.addEventListener("input", () => {
   postalCodeField.setCustomValidity("");
   removeInvalidErrorOutline(postalCodeField);
 });
+
+function removeInvalidErrorOutline(el) {
+  if (!el.classList.contains("input")) {
+    el.classList.add("input");
+  }
+}
 
 function resetInvalidErrorOutline(el) {
    el.classList.remove("input");
@@ -76,26 +78,83 @@ function checkPostalCode() {
 }
 
 // Pwd
+passwd.addEventListener("input", () => {
+  passwd.setCustomValidity("");
+  removeInvalidErrorOutline(passwd);
+});
 
-// Pwd confirmation
+passwd.addEventListener("blur", () => {
+  resetInvalidErrorOutline(passwd);
 
+  if (passwd.validity.tooShort) {
+    passwd.setCustomValidity("Password too short (8 characters min.).");
+    passwd.reportValidity();
+  } else {
+    passwd.setCustomValidity("");
+  }
+
+  if (!(passwd.value.trim() && passwdConfirm.value.trim())) return;
+
+  if (checkPassMatch()) {
+    passwd.setCustomValidity("");
+  } else {
+    passwd.setCustomValidity("Passwords must be matching.")
+    passwd.reportValidity();
+  }
+});
+
+// Pwd Confirmation
+passwdConfirm.addEventListener("input", () => {
+  passwdConfirm.setCustomValidity("");
+  removeInvalidErrorOutline(passwdConfirm);
+});
+
+passwdConfirm.addEventListener("blur", () => {
+  resetInvalidErrorOutline(passwdConfirm);
+
+  if (!passwd.value.trim()) return;
+  if (!passwdConfirm.value.trim()) return;
+
+  if (checkPassMatch()) {
+    passwdConfirm.setCustomValidity("");
+  } else {
+    passwdConfirm.setCustomValidity("Passwords must be matching.");
+    passwdConfirm.reportValidity();
+  }
+});
+
+function checkPassMatch() {
+  const passwdVal = passwd.value.trim();
+  const passwdConfirmVal = passwdConfirm.value.trim();
+
+  if (passwdVal && passwdConfirmVal) {
+    return passwdVal === passwdConfirmVal ? true : false;
+  }
+}
+
+function validate(el) {
+  if (!el.value.trim()) {
+    el.setCustomValidity("Some fields are still empty.");
+  } else {
+    el.setCustomValidity("");
+  }
+}
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  // if anything, empty, error, check all form at once
-  if (!email.value.trim()) {
-    email.setCustomValidity("Email is required");
-    email.reportValidity();
+
+  validate(email);
+  validate(postalCodeField);
+  validate(passwd);
+  validate(passwdConfirm);
+  
+  const isFormValid = form.reportValidity();
+
+  if (isFormValid) {
+    fieldset.replaceChildren();
+    const span = document.createElement("span");
+    span.textContent = "High five, man!!! 🖐️";
+    fieldset.style.textAlign = "center";
+    fieldset.appendChild(span);
   }
-
-  // if (!form.checkValidity()) {
-  //   form.reportValidity();
-  //   const firstInvalid = form.querySelector(':invalid');
-  //   firstInvalid.setCustomValidity('Please correct this field');
-  //   firstInvalid.reportValidity();
-  // }
-
-  // check postal at exit
-
-  // if all is well, high five!
 });
