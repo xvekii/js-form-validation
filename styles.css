@@ -4,6 +4,10 @@ body {
   min-height: 80vh;
 }
 
+fieldset {
+  padding: 20px;
+}
+
 form {
   width: 30%;
 }
@@ -18,6 +22,52 @@ label {
   display: block;
 }
 
+input {
+  border-radius: 2px;
+}
+
+input + span {
+  position: relative;
+}
+
+input + span::before {
+  position: absolute;
+  right: -20px;
+  top: 2px;
+}
+
+input:valid {
+  border: none;
+  /* outline: 2px solid #4CAF50; */
+  outline: 2px solid black;
+  border-radius: 2px;
+  accent-color: gold;
+}
+
+/* input:valid + span::before {
+  content: "✓";
+  color: green;
+} */
+
+input:invalid {
+  background-color: #ff00000f;
+  border: none;
+  outline: 2px solid red;
+  border-radius: 2px;
+}
+
+input.input:invalid {
+  background-color: white;
+  border: none;
+  outline: 2px solid black;
+  border-radius: 2px;
+}
+
+/* input:invalid + span::before {
+  content: "✖";
+  color: red;
+} */
+
 #postal-code {
   width: 7.1rem;
 }
@@ -26,4 +76,14 @@ label {
 #passwd-confirm,
 #email {
   width: 96%;
+}
+
+.submit-btn-p {
+  text-align: end;
+}
+
+.submit-btn-p button {
+  margin-right: 2px;
+  margin-top: .5rem;
+  padding: 4px 8px;
 }
