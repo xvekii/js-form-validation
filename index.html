@@ -15,7 +15,7 @@
         <!-- Email -->
         <label class="block" for="email">Email: </label>
         <input type="email" name="email" id="email" autocomplete="on" 
-        placeholder="username@bla.com"  maxlength="64">
+          placeholder="username@bla.com"  maxlength="64">
         <span></span>
       </p>
       <p>
@@ -36,13 +36,15 @@
       <!-- Password -->
       <p>
         <label class="block" for="passwd">Password (8 characters minimum): </label>
-        <input type="password" name="passwd" id="passwd">
+        <input type="password" name="passwd" id="passwd"
+          minlength="8" maxlength="12">
         <span></span>
       </p>
       <!-- Password Confirmation -->
       <p>
         <label class="block" for="passwd-confirm">Confirm Password: </label>
-        <input type="password" name="passwd-confirm" id="passwd-confirm">
+        <input type="password" name="passwd-confirm" id="passwd-confirm" 
+          minlength="8" maxlength="12">
         <span></span>
       </p>
       <p class="submit-btn-p"><button>Submit</button></p>
