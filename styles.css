@@ -38,16 +38,10 @@ input + span::before {
 
 input:valid {
   border: none;
-  /* outline: 2px solid #4CAF50; */
   outline: 2px solid black;
   border-radius: 2px;
   accent-color: gold;
 }
-
-/* input:valid + span::before {
-  content: "✓";
-  color: green;
-} */
 
 input:invalid {
   background-color: #ff00000f;
@@ -62,11 +56,6 @@ input.input:invalid {
   outline: 2px solid black;
   border-radius: 2px;
 }
-
-/* input:invalid + span::before {
-  content: "✖";
-  color: red;
-} */
 
 #postal-code {
   width: 7.1rem;
